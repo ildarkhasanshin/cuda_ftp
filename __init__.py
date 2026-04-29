@@ -1349,8 +1349,8 @@ class Command:
         server, server_path, _x = self.get_location_by_index(self.selected)
         alias, __x = self.get_server_alias_path()
 
-        path_ = os.path.join(os.path.expanduser('~'), 'cudatext_ftp') + os.sep + \
-            (alias + str(server_path)).replace(':', '_').replace('/', '_') # Win32 don't allow these chars
+        path_ = os.path.join(os.path.expanduser('~'), 'cudatext_ftp') + os.sep
+        path_ += (alias + str(server_path)).replace(':', '_').replace('/', '_') if os.name == 'nt' else (alias + str(server_path))
 
         def get_filedir_(dat_):
             tmp = str(dat_).split(os.sep)
