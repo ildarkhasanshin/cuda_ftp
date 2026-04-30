@@ -1350,7 +1350,10 @@ class Command:
         alias, __x = self.get_server_alias_path()
 
         path_ = os.path.join(os.path.expanduser('~'), 'cudatext_ftp') + os.sep
-        path_ += (alias + str(server_path)).replace(':', '_').replace('/', '_') if os.name == 'nt' else (alias + str(server_path))
+        alias_server_path = (alias + str(server_path)).replace(':', '_')
+        if os.name == 'nt':
+            alias_server_path = alias_server_path.replace('/', '_')
+        path_ += alias_server_path
 
         def get_filedir_(dat_):
             tmp = str(dat_).split(os.sep)
